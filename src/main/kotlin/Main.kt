@@ -1,7 +1,14 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+const val MAX_EXPERIENCE: Int = 5000
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    val playerName: String = "Estragon"
+    var experiencePoints: Int = 5
+
+    var hasSteed: String = ""
+    val pubName = "Unicorn's Horn"
+    val publican = "Verovero"
+
+    experiencePoints += 5
+    println(experiencePoints)
+    println(playerName)
 }
