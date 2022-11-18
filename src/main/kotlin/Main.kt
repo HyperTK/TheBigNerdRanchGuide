@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     // Player status
     printPlayerStatus(auraColor, isBlessed, name, healthStatus)
 
-    castFireball()
+    castFireball(5)
 }
 
 /**
@@ -36,20 +36,17 @@ private fun printPlayerStatus(
  * @param isBlessed 祝福の有無
  * @return 残り体力の状態
  */
-private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean): String {
-    val healthStatus = when (healthPoints) {
-        100 -> "is in excellent condition!"
-        in 90..99 -> "has a few scratches."
-        in 75..89 -> if (isBlessed) {
-            "has some minor wounds but is healing quite quickly!"
-        } else {
-            "has some minor wounds."
-        }
-
-        in 15..74 -> "looks pretty hurt."
-        else -> "is in awful condition!"
+private fun formatHealthStatus(healthPoints: Int, isBlessed: Boolean): String = when (healthPoints) {
+    100 -> "is in excellent condition!"
+    in 90..99 -> "has a few scratches."
+    in 75..89 -> if (isBlessed) {
+        "has some minor wounds but is healing quite quickly!"
+    } else {
+        "has some minor wounds."
     }
-    return healthStatus
+
+    in 15..74 -> "looks pretty hurt."
+    else -> "is in awful condition!"
 }
 
 /**
@@ -63,12 +60,15 @@ private fun auraColor(
     isBlessed: Boolean,
     healthPoints: Int,
     isImmortal: Boolean
-): String {
-    val auraVisible = isBlessed && healthPoints > 50 || isImmortal
-    val auraColor = if (auraVisible) "GREEN" else "NONE"
-    return auraColor
+): String = if (isBlessed && healthPoints > 50 || isImmortal) {
+    "GREEN"
+} else {
+    "NONE"
 }
 
-private fun castFireball() {
-    println("A glass of Fireball springs into existence.")
-}
+/**
+ * ファイアボールを放つ
+ * @param numFireballs ファイアボールの数
+ */
+private fun castFireball(numFireballs: Int = 2) =
+    println("A glass of Fireball springs into existence.(x$numFireballs)")
