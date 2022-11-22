@@ -8,9 +8,10 @@ val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
 val readOnlyPatronList = patronList.toList()
 
 fun main(args: Array<String>) {
-    placeOrder("Shandy,Dragon's Breath,5.91")
-     patronList.forEach{patron ->
-         println("Good evening, $patron")
+     patronList.forEachIndexed{index, patron ->
+         println("Good evening, $patron - you're #${index + 1} in line.")
+         placeOrder(patron, "Shandy,Dragon's Breath,5.91")
+
      }
 }
 
@@ -34,21 +35,21 @@ private fun displayBalance() {
     println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
 }
 
-private fun placeOrder(menuData: String) {
+private fun placeOrder(patronName: String, menuData: String) {
     val indexOfApostrophe = TAVERN_NAME.indexOf("'")
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
-    println("Madrigal speaks with $tavernMaster about their order.")
+    println("$patronName speaks with $tavernMaster about their order.")
 
     val (type, name, price) = menuData.split(",")
-    val message = "Madrigal buys a $name ($type) for $price."
+    val message = "$patronName buys a $name ($type) for $price."
     println(message)
 
-    performPurchase(price.toDouble())
+    //performPurchase(price.toDouble())
 
     val phrase = if (name == "Dragon's Breath") {
-        "Madrigal exclaims: ${toDragonSpeak("Ah, delicious $name")}"
+        "$patronName exclaims: ${toDragonSpeak("Ah, delicious $name")}"
     } else {
-        "Madrigal says: Thanks for the $name."
+        "$patronName says: Thanks for the $name."
     }
     println(phrase)
 
