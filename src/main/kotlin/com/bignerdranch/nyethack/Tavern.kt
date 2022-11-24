@@ -1,5 +1,6 @@
+package com.bignerdranch.nyethack
+
 import java.io.File
-import kotlin.math.roundToInt
 
 const val TAVERN_NAME = "Taernyl's Folly"
 
@@ -28,6 +29,14 @@ fun main(args: Array<String>) {
     while (orderCount <= 9) {
         placeOrder(uniquePatrons.shuffled().first(), menuList.shuffled().first())
         orderCount++
+    }
+
+    displayPatronBalances()
+}
+
+private fun displayPatronBalances() {
+    patronGold.forEach { (patron, balance) ->
+        println("$patron, balance: ${"%.2f"}".format(balance))
     }
 }
 
