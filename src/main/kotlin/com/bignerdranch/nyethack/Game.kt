@@ -2,9 +2,8 @@ package com.bignerdranch.nyethack
 
 fun main(args: Array<String>) {
 
-
-    val player = Player("Madrigal", 89, true, false)
-    player.castFireball(3)
+    val player = Player("Madrigal")
+    player.castFireball(8)
     printPlayerStatus(player)
 }
 

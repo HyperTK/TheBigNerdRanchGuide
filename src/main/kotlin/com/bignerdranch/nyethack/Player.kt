@@ -12,6 +12,14 @@ class Player(
             field = value.trim()
         }
 
+    constructor(name: String) : this(name,
+    healthPoints = 100,
+    isBlessed = true,
+    isImmortal = false) {
+        if (name.toLowerCase() == "kar") healthPoints = 40
+    }
+
+
     /**
      * オーラの色を決定する
      * @return オーラの色
