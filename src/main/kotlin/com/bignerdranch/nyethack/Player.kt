@@ -1,24 +1,42 @@
 package com.bignerdranch.nyethack
 
+import java.io.File
+
 class Player(
     _name: String,
-    var healthPoints: Int,
+    var healthPoints: Int = 100,
     val isBlessed: Boolean,
     private val isImmortal: Boolean
 ) {
     var name = _name
-        get() = field.capitalize()
+        get() = "${field.capitalize()} of $homeTown"
         private set(value) {
             field = value.trim()
         }
+    // 町の名前を取得
+    val homeTown by lazy { selectHometown() }
 
-    constructor(name: String) : this(name,
-    healthPoints = 100,
-    isBlessed = true,
-    isImmortal = false) {
+    init {
+        require(healthPoints > 0) { "healthPoints must be greater than zero." }
+        require(name.isNotBlank()) { "Player must have a name." }
+    }
+
+    constructor(name: String) : this(
+        name,
+        isBlessed = true,
+        isImmortal = false
+    ) {
         if (name.toLowerCase() == "kar") healthPoints = 40
     }
 
+    /**
+     * ファイルからランダムに選択した町の名前を返す
+     */
+    fun selectHometown() = File("data/towns.txt")
+        .readText()
+        .split("\n")
+        .shuffled()
+        .first()
 
     /**
      * オーラの色を決定する
