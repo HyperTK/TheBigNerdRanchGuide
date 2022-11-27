@@ -15,6 +15,7 @@ class Player(
         }
     // 町の名前を取得
     val homeTown by lazy { selectHometown() }
+    var currentPosition = Navigation.Coordinate(0, 0)
 
     init {
         require(healthPoints > 0) { "healthPoints must be greater than zero." }
