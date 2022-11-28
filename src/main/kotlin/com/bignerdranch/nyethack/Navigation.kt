@@ -10,8 +10,9 @@ class Navigation {
         /**
          * プレイヤーの位置を変更する
          * @param playerCoordinate 変更前のプレイヤーの座標
+         * @return 変更後のプレイヤーの座標
          */
-        fun updateCoordinate(playerCoordinate: Coordinate) =
+        fun updateCoordinate(playerCoordinate: Coordinate): Coordinate =
             coordinate + playerCoordinate
     }
     data class Coordinate(val x: Int, val y: Int) {
